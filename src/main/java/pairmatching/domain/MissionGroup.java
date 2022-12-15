@@ -1,6 +1,7 @@
 package pairmatching.domain;
 
 import java.util.List;
+import java.util.Objects;
 
 public class MissionGroup {
     private Course course;
@@ -14,5 +15,22 @@ public class MissionGroup {
     public static MissionGroup from(List<String> input) {
         return new MissionGroup(Course.from(input.get(0)),
                 Mission.of(Level.from(input.get(1)), input.get(2)));
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(course, mission);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof MissionGroup)) {
+            return false;
+        }
+        if (((MissionGroup) obj).course.equals(course)
+                && ((MissionGroup) obj).mission.equals(mission)) {
+            return true;
+        }
+        return false;
     }
 }
