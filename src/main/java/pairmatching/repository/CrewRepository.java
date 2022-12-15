@@ -15,16 +15,9 @@ public class CrewRepository {
         this.crews.add(crew);
     }
 
-    public List<String> readBackendCrews() {
+    public List<String> findByCourse(Course course) {
         return crews.stream()
-                .filter(crew -> crew.getCourse() == Course.BACKEND)
-                .map(Crew::getName)
-                .collect(Collectors.toList());
-    }
-
-    public List<String> readFrontendCrews() {
-        return crews.stream()
-                .filter(crew -> crew.getCourse() == Course.FRONTEND)
+                .filter(crew -> crew.getCourse() == course)
                 .map(Crew::getName)
                 .collect(Collectors.toList());
     }
