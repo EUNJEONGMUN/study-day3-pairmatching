@@ -21,6 +21,9 @@ public class PairMatchingService {
 
     public List<Pair> matchPair(MissionGroup missionGroup) {
         List<String> crews = crewService.getCrewsByCourse(missionGroup.getCourse());
+        if (crews.size() < 2) {
+            throw new IllegalArgumentException("크루가 2명 이상일 때 페어를 맺을 수 있습니다.");
+        }
         List<String> shuffleCrews = shuffleCrews(crews);
         return makePair(missionGroup.getCourse(), shuffleCrews);
     }
