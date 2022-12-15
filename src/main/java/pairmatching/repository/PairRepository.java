@@ -21,4 +21,8 @@ public class PairRepository {
                 .flatMap(List::stream)
                 .collect(Collectors.toList());
     }
+
+    public void addPairs(MissionGroup missionGroup, List<Pair> pairs) {
+        this.pairs.put(missionGroup, pairs);
+    }
 }

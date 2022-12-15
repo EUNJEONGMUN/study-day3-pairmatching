@@ -8,7 +8,6 @@ import pairmatching.domain.Pair;
 import pairmatching.repository.PairRepository;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class PairMatchingService {
@@ -19,7 +18,17 @@ public class PairMatchingService {
         return !pairRepository.findByMissionGroup(missionGroup).isEmpty();
     }
 
-    public List<Pair> matchPair(MissionGroup missionGroup) {
+    public void createNotDuplicatePair(MissionGroup missionGroup) {
+        for (int i=0; i<3; i++) {
+            List<Pair> pairs = matchPair(missionGroup);
+            if (!isDuplicated(missionGroup, pairs)) {
+                addPairs(missionGroup, pairs);
+            }
+        }
+        throw new IllegalArgumentException("페어매칭을 할 수 없습니다.");
+    }
+
+    private List<Pair> matchPair(MissionGroup missionGroup) {
         List<String> crews = crewService.getCrewsByCourse(missionGroup.getCourse());
         if (crews.size() < 2) {
             throw new IllegalArgumentException("크루가 2명 이상일 때 페어를 맺을 수 있습니다.");
@@ -28,11 +37,15 @@ public class PairMatchingService {
         return makePair(missionGroup.getCourse(), shuffleCrews);
     }
 
-    public boolean isDuplicated(MissionGroup missionGroup, List<Pair> pairs) {
+    private boolean isDuplicated(MissionGroup missionGroup, List<Pair> pairs) {
         List<Pair> sameMissionPairs = pairRepository.findByMissionLevel(missionGroup);
         return pairs.stream()
                 .anyMatch(pair -> sameMissionPairs.stream()
                         .anyMatch(sameMissionPair -> pair.isSamePair(sameMissionPair)));
+    }
+
+    private void addPairs(MissionGroup missionGroup, List<Pair> pairs) {
+        pairRepository.addPairs(missionGroup, pairs);
     }
 
     private List<Pair> makePair(Course course, List<String> names) {

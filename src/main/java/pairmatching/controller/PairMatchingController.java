@@ -1,11 +1,16 @@
 package pairmatching.controller;
 
+import pairmatching.domain.Command;
 import pairmatching.domain.Menu;
+import pairmatching.domain.MissionGroup;
+import pairmatching.domain.Pair;
 import pairmatching.service.CrewService;
 import pairmatching.service.PairMatchingService;
+import pairmatching.view.InputMessageView;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
+import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -28,7 +33,7 @@ public class PairMatchingController {
 
     private void linkMenu(Menu menu) {
         if (menu == Menu.PAIR_MATCHING) {
-            // runPairMatching();
+            runPairMatching();
         }
         if (menu == Menu.LOOKUP_PAIR) {
             // runLookupPair();
@@ -36,6 +41,19 @@ public class PairMatchingController {
         if (menu == Menu.INIT_PAIR) {
             // runInitPair();
         }
+    }
+
+    private void runPairMatching() {
+        InputMessageView.showMission();
+        MissionGroup missionGroup;
+        boolean isContinue = false;
+        do {
+            missionGroup = read(MissionGroup::from, InputView::readCourseAndMission);
+            if (pairMatchingService.isExistsPair(missionGroup)) {
+                isContinue = read(Command::from, InputView::readCommand) == Command.NO;
+            }
+        } while(isContinue);
+        pairMatchingService.createNotDuplicatePair(missionGroup);
     }
 
     private <T, R> R read(Function<T, R> object, Supplier<T> input) {
