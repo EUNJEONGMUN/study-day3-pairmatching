@@ -21,12 +21,12 @@ public enum Course {
         return name;
     }
 
-    private static final Map<String, Course> menus =
+    public static final Map<String, Course> courses =
             Collections.unmodifiableMap(Stream.of(values())
                     .collect(Collectors.toMap(Course::getName, Function.identity())));
 
-    public static Course from(String number) {
-        return Optional.ofNullable(menus.get(number)).orElseThrow(
+    public static Course from(String input) {
+        return Optional.ofNullable(courses.get(input)).orElseThrow(
                 () -> new IllegalArgumentException("올바른 과정을 입력해주세요."));
     }
 }
