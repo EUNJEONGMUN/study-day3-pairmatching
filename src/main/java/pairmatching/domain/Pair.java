@@ -12,7 +12,7 @@ public class Pair {
         this.names.addAll(names);
     }
 
-    public static Pair of(Crew ... names) {
+    public static Pair of(Crew... names) {
         return new Pair(Arrays.asList(names));
     }
 

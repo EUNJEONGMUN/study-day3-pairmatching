@@ -5,7 +5,9 @@ import pairmatching.domain.Crew;
 import pairmatching.repository.CrewRepository;
 import pairmatching.view.OutputView;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 

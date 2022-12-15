@@ -20,7 +20,7 @@ public class PairMatchingService {
     }
 
     public void createNotDuplicatePair(MissionGroup missionGroup) {
-        for (int i=0; i<3; i++) {
+        for (int i = 0; i < 3; i++) {
             List<Pair> pairs = matchPair(missionGroup);
             if (!isDuplicated(missionGroup, pairs)) {
                 addPairs(missionGroup, pairs);
