@@ -29,6 +29,6 @@ public enum Menu {
 
     public static Menu from(String number) {
         return Optional.ofNullable(menus.get(number)).orElseThrow(
-                () -> new IllegalArgumentException("선택할 수 없는 기능입니다."));
+                () -> new IllegalArgumentException("올바른 기능을 선택해주세요."));
     }
 }
