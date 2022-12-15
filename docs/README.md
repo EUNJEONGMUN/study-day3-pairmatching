@@ -28,7 +28,7 @@
     - 
 - [ ] 페어 매칭을 한다.
   - [x] 크루들의 이름목록을 List<String> 형태로 준비한다.
-  - [ ] 크루 목록의 순서를 랜덤으로 섞는다.(`camp.nextstep.edu.missionutils.Randoms`의 shuffle 메서드를 활용)
+  - [x] 크루 목록의 순서를 랜덤으로 섞는다.(`camp.nextstep.edu.missionutils.Randoms`의 shuffle 메서드를 활용)
   - [ ] 앞에서부터 두 명씩 페어를 맺는다.(홀수일 경우 마지막 페어에 포함시킨다.)
   - [ ] 같은 레벨에서 이미 페어를 맺은 크루가 있는지 확인하고, 존재하면 다시 섞는다.
   - 예외 처리

@@ -1,9 +1,11 @@
 package pairmatching.service;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import pairmatching.domain.MissionGroup;
 import pairmatching.domain.Pair;
 import pairmatching.repository.PairRepository;
 
+import java.util.Collections;
 import java.util.List;
 
 public class PairMatchingService {
@@ -15,5 +17,11 @@ public class PairMatchingService {
 
     public List<Pair> matchPair(MissionGroup missionGroup) {
         List<String> crews = crewService.getCrewsByCourse(missionGroup.getCourse());
+        List<String> shuffleCrews = shuffleCrews(crews);
+        return Collections.emptyList();
+    }
+
+    public List<String> shuffleCrews(List<String> crews) {
+        return Randoms.shuffle(crews);
     }
 }
