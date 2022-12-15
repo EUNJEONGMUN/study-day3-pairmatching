@@ -17,6 +17,10 @@ public class MissionGroup {
                 Mission.of(Level.from(input.get(1)), input.get(2)));
     }
 
+    public Course getCourse() {
+        return course;
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(course, mission);

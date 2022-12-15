@@ -25,6 +25,10 @@ public class CrewService {
         }
     }
 
+    public List<String> getCrewsByCourse(Course course) {
+        return crewRepository.findByCourse(course);
+    }
+
     private void saveCrews(List<String> names, Course course) {
         names.stream()
                 .map(name -> Crew.of(course, name))
