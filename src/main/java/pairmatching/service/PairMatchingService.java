@@ -22,11 +22,10 @@ public class PairMatchingService {
     public List<Pair> matchPair(MissionGroup missionGroup) {
         List<String> crews = crewService.getCrewsByCourse(missionGroup.getCourse());
         List<String> shuffleCrews = shuffleCrews(crews);
-        List<Pair> pairs = makePair(missionGroup.getCourse(), shuffleCrews);
-        return Collections.emptyList();
+        return makePair(missionGroup.getCourse(), shuffleCrews);
     }
 
-    public List<Pair> makePair(Course course, List<String> names) {
+    private List<Pair> makePair(Course course, List<String> names) {
         List<Pair> result = new ArrayList<>();
         for (int i = 0; i < (names.size() / 2) * 2; i += 2) {
             result.add(Pair.of(Crew.of(course, names.get(i)), Crew.of(course, names.get(i + 1))));
