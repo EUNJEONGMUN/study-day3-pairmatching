@@ -26,7 +26,7 @@ public class PairMatchingService {
                 addPairs(missionGroup, pairs);
             }
         }
-        throw new IllegalArgumentException("페어매칭을 할 수 없습니다.");
+        throw new IllegalStateException("페어매칭을 할 수 없습니다.");
     }
 
     public PairsDto getPairs(MissionGroup missionGroup) {

@@ -35,7 +35,7 @@ public class PairMatchingController {
             runPairMatching();
         }
         if (menu == Menu.LOOKUP_PAIR) {
-            // runLookupPair();
+            runLookupPair();
         }
         if (menu == Menu.INIT_PAIR) {
             // runInitPair();
@@ -58,6 +58,17 @@ public class PairMatchingController {
     private void createNotDuplicatePair(MissionGroup missionGroup) {
         try {
             pairMatchingService.createNotDuplicatePair(missionGroup);
+            PairsDto pairs = pairMatchingService.getPairs(missionGroup);
+            OutputView.printResult(pairs);
+        } catch (IllegalStateException e) {
+            OutputView.printErrorMessage(e.getMessage());
+        }
+    }
+
+    private void runLookupPair() {
+        try {
+            InputMessageView.showMission();
+            MissionGroup missionGroup = read(MissionGroup::from, InputView::readCourseAndMission);
             PairsDto pairs = pairMatchingService.getPairs(missionGroup);
             OutputView.printResult(pairs);
         } catch (IllegalStateException e) {
