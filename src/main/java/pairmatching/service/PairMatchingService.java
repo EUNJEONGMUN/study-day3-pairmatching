@@ -5,6 +5,7 @@ import pairmatching.domain.Course;
 import pairmatching.domain.Crew;
 import pairmatching.domain.MissionGroup;
 import pairmatching.domain.Pair;
+import pairmatching.dto.PairsDto;
 import pairmatching.repository.PairRepository;
 
 import java.util.ArrayList;
@@ -26,6 +27,14 @@ public class PairMatchingService {
             }
         }
         throw new IllegalArgumentException("페어매칭을 할 수 없습니다.");
+    }
+
+    public PairsDto getPairs(MissionGroup missionGroup) {
+        List<Pair> pairs = pairRepository.findByMissionGroup(missionGroup);
+        if (pairs.isEmpty()) {
+            throw new IllegalArgumentException("매칭 이력이 없습니다.");
+        }
+        return PairsDto.of(pairs);
     }
 
     private List<Pair> matchPair(MissionGroup missionGroup) {

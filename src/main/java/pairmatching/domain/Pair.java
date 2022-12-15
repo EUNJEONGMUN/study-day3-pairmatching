@@ -3,6 +3,7 @@ package pairmatching.domain;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Pair {
     private final List<Crew> names = new ArrayList<>();
@@ -23,5 +24,11 @@ public class Pair {
         return pair.names.stream()
                 .filter(name -> this.names.contains(name))
                 .count() >= 2;
+    }
+
+    public List<String> getNames() {
+        return names.stream()
+                .map(Crew::getName)
+                .collect(Collectors.toList());
     }
 }

@@ -3,14 +3,13 @@ package pairmatching.controller;
 import pairmatching.domain.Command;
 import pairmatching.domain.Menu;
 import pairmatching.domain.MissionGroup;
-import pairmatching.domain.Pair;
+import pairmatching.dto.PairsDto;
 import pairmatching.service.CrewService;
 import pairmatching.service.PairMatchingService;
 import pairmatching.view.InputMessageView;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
-import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -52,8 +51,18 @@ public class PairMatchingController {
             if (pairMatchingService.isExistsPair(missionGroup)) {
                 isContinue = read(Command::from, InputView::readCommand) == Command.NO;
             }
-        } while(isContinue);
-        pairMatchingService.createNotDuplicatePair(missionGroup);
+        } while (isContinue);
+        createNotDuplicatePair(missionGroup);
+    }
+
+    private void createNotDuplicatePair(MissionGroup missionGroup) {
+        try {
+            pairMatchingService.createNotDuplicatePair(missionGroup);
+            PairsDto pairs = pairMatchingService.getPairs(missionGroup);
+            OutputView.printResult(pairs);
+        } catch (IllegalStateException e) {
+            OutputView.printErrorMessage(e.getMessage());
+        }
     }
 
     private <T, R> R read(Function<T, R> object, Supplier<T> input) {
