@@ -28,6 +28,12 @@ public class InputView {
                 .collect(Collectors.toList());
     }
 
+    public static String readCommand() {
+        System.out.println("매칭 정보가 있습니다. 다시 매칭하시겠습니까?\n" +
+                "네 | 아니오");
+        return Console.readLine();
+    }
+
     private static void validateInputFormat(String input) {
         if (input.split(DELIMITER, -1).length != 3) {
             throw new IllegalArgumentException("과정, 레벨, 미션은 쉼표로 구분하어 입력해야 합니다.");
