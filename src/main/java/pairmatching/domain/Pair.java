@@ -14,4 +14,8 @@ public class Pair {
     public static Pair of(Crew ... names) {
         return new Pair(Arrays.asList(names));
     }
+
+    public void addCrew(Crew crew) {
+        names.add(crew);
+    }
 }
