@@ -24,6 +24,7 @@ public class PairMatchingService {
             List<Pair> pairs = matchPair(missionGroup);
             if (!isDuplicated(missionGroup, pairs)) {
                 addPairs(missionGroup, pairs);
+                return;
             }
         }
         throw new IllegalStateException("페어매칭을 할 수 없습니다.");
