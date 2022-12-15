@@ -18,4 +18,10 @@ public class Pair {
     public void addCrew(Crew crew) {
         names.add(crew);
     }
+
+    public boolean isSamePair(Pair pair) {
+        return pair.names.stream()
+                .filter(name -> this.names.contains(name))
+                .count() >= 2;
+    }
 }

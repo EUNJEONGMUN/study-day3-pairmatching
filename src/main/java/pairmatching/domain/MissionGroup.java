@@ -21,6 +21,11 @@ public class MissionGroup {
         return course;
     }
 
+    public boolean isSameCourseAndLevel(MissionGroup missionGroup) {
+        return this.course == missionGroup.course
+                && this.mission.isSameLevel(missionGroup.mission);
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(course, mission);

@@ -36,4 +36,8 @@ public enum Mission {
                 .findAny()
                 .orElseThrow( () -> new IllegalArgumentException("올바른 미션을 입력해주세요."));
     }
+
+    public boolean isSameLevel(Mission mission) {
+        return this.level == mission.level;
+    }
 }

@@ -25,6 +25,13 @@ public class PairMatchingService {
         return makePair(missionGroup.getCourse(), shuffleCrews);
     }
 
+    public boolean isDuplicated(MissionGroup missionGroup, List<Pair> pairs) {
+        List<Pair> sameMissionPairs = pairRepository.findByMissionLevel(missionGroup);
+        return pairs.stream()
+                .anyMatch(pair -> sameMissionPairs.stream()
+                        .anyMatch(sameMissionPair -> pair.isSamePair(sameMissionPair)));
+    }
+
     private List<Pair> makePair(Course course, List<String> names) {
         List<Pair> result = new ArrayList<>();
         for (int i = 0; i < (names.size() / 2) * 2; i += 2) {
