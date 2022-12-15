@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public enum Course {
-    BACKEND("벡엔드"),
+    BACKEND("백엔드"),
     FRONTEND("프론트엔드");
 
     private String name;
