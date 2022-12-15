@@ -25,4 +25,8 @@ public class PairRepository {
     public void addPairs(MissionGroup missionGroup, List<Pair> pairs) {
         this.pairs.put(missionGroup, pairs);
     }
+
+    public void clear() {
+        pairs.clear();
+    }
 }

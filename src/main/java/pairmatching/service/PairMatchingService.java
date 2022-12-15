@@ -73,4 +73,8 @@ public class PairMatchingService {
     private List<String> shuffleCrews(List<String> crews) {
         return Randoms.shuffle(crews);
     }
+
+    public void initMatchingHistory() {
+        pairRepository.clear();
+    }
 }

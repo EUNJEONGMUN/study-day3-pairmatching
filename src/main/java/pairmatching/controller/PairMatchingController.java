@@ -38,7 +38,7 @@ public class PairMatchingController {
             runLookupPair();
         }
         if (menu == Menu.INIT_PAIR) {
-            // runInitPair();
+            runInitMatchingHistory();
         }
     }
 
@@ -74,6 +74,10 @@ public class PairMatchingController {
         } catch (IllegalStateException e) {
             OutputView.printErrorMessage(e.getMessage());
         }
+    }
+
+    private void runInitMatchingHistory() {
+        pairMatchingService.initMatchingHistory();
     }
 
     private <T, R> R read(Function<T, R> object, Supplier<T> input) {
