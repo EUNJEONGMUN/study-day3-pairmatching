@@ -78,6 +78,7 @@ public class PairMatchingController {
 
     private void runInitMatchingHistory() {
         pairMatchingService.initMatchingHistory();
+        OutputView.printMessage("초기화되었습니다.");
     }
 
     private <T, R> R read(Function<T, R> object, Supplier<T> input) {
