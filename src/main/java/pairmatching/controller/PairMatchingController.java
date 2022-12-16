@@ -60,7 +60,7 @@ public class PairMatchingController {
             pairMatchingService.createNotDuplicatePair(missionGroup);
             PairsDto pairs = pairMatchingService.getPairs(missionGroup);
             OutputView.printResult(pairs);
-        } catch (IllegalStateException e) {
+        } catch (RuntimeException e) {
             OutputView.printErrorMessage(e.getMessage());
         }
     }
@@ -71,7 +71,7 @@ public class PairMatchingController {
             MissionGroup missionGroup = read(MissionGroup::from, InputView::readCourseAndMission);
             PairsDto pairs = pairMatchingService.getPairs(missionGroup);
             OutputView.printResult(pairs);
-        } catch (IllegalStateException e) {
+        } catch (RuntimeException e) {
             OutputView.printErrorMessage(e.getMessage());
         }
     }
